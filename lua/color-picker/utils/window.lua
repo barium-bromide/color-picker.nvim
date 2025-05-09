@@ -567,8 +567,8 @@ end --}}}
 
 local function detect_colors(str) --{{{
 	local hex_pattern = "#%x%x%x%x?%x?%x?%x?%x?"
-	local rgb_pattern = "rgba?%(%s*%d+%s*,%s*%d+%s*,%s*%d+%s*.*%)"
-	local hsl_pattern = "hsla?%(%s*%d+%s*,%s*%d+%s*%%*,%s*%d+%s*%%*.*%)"
+	local rgb_pattern = "rgba?%(%s*%d+%s*,?%s*%d+%s*,?%s*%d+%s*.*%)"
+	local hsl_pattern = "hsla?%(%s*%d+%s*,?%s*%d+%s*%%*,?%s*%d+%s*%%*.*%)"
 
 	local results = {}
 	local patterns = { hex_pattern, rgb_pattern, hsl_pattern }
