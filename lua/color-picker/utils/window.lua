@@ -196,7 +196,7 @@ local function update_output() --{{{
 	local transp_hex = ""
 	if transparency_mode == true then
 		alpha_string = "a"
-		alpha_value_string = ", " .. alpha_value
+		alpha_value_string = "/ " .. alpha_value
 		transp_hex = string.format("%02x", round(color_values[5] * (255 / 100) + 0.001)) -- added 0.001 for rounding 0.5 to 1
 	end
 
@@ -207,14 +207,14 @@ local function update_output() --{{{
 				.. alpha_string
 				.. "("
 				.. converted_rgb[1]
-				.. ", "
+				.. " "
 				.. converted_rgb[2]
-				.. ", "
+				.. " "
 				.. converted_rgb[3]
 				.. alpha_value_string
 				.. ")"
 		else
-			output = "rgb" .. alpha_string .. "(" .. arg1 .. ", " .. arg2 .. ", " .. arg3 .. alpha_value_string .. ")"
+			output = "rgb" .. alpha_string .. "(" .. arg1 .. " " .. arg2 .. " " .. arg3 .. alpha_value_string .. ")"
 		end
 	elseif output_type == "hex" then
 		if color_mode == "rgb" then
@@ -223,17 +223,7 @@ local function update_output() --{{{
 			output = hslToHex(arg1, arg2, arg3) .. transp_hex
 		end
 	elseif output_type == "hsl" then
-		output = "hsl"
-			.. alpha_string
-			.. "("
-			.. arg1
-			.. ", "
-			.. arg2
-			.. "%, "
-			.. arg3
-			.. "%"
-			.. alpha_value_string
-			.. ")"
+		output = "hsl" .. alpha_string .. "(" .. arg1 .. " " .. arg2 .. "% " .. arg3 .. "%" .. alpha_value_string .. ")"
 	end
 
 	local fg_color = get_fg_color()
@@ -385,7 +375,7 @@ local function setup_virt_text() ---create initial virtual text{{{
 	end
 
 	--- last row
-	output_extmark = ext(3, 0, "rgb(0,0,0)", M.user_settings.text_highlight_group, "right_align")
+	output_extmark = ext(3, 0, "rgb(0 0 0)", M.user_settings.text_highlight_group, "right_align")
 end --}}}
 
 -------------------------------------
@@ -1007,9 +997,9 @@ local function convert_cursor_color(rgb_or_hsl) --{{{
 					output = "rgb"
 						.. "("
 						.. converted_hex[1]
-						.. ", "
+						.. " "
 						.. converted_hex[2]
-						.. ", "
+						.. " "
 						.. converted_hex[3]
 						.. ")"
 				else
@@ -1017,9 +1007,9 @@ local function convert_cursor_color(rgb_or_hsl) --{{{
 					output = "hsl"
 						.. "("
 						.. converted_hex[1]
-						.. ", "
+						.. " "
 						.. converted_hex[2]
-						.. "%, "
+						.. "% "
 						.. converted_hex[3]
 						.. "%)"
 				end
