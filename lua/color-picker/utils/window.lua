@@ -2,7 +2,7 @@ local M = {}
 local api = vim.api
 local utils = require("color-picker.utils")
 
--------------------------------------
+----------------------------------- --
 
 local win = nil
 local buf = nil
@@ -35,8 +35,8 @@ M.user_settings = {
 vim.cmd(":highlight ColorPickerOutput guifg=#white")
 vim.cmd(":highlight ColorPickerActionGroup guifg=#00F1F5")
 
-local output_type = "rgb"
-local color_mode = "rgb"
+local output_type = "hsl"
+local color_mode = "hsl"
 
 ---@diagnostic disable-next-line: unused-local
 local alpha_slider_A = nil
@@ -48,7 +48,7 @@ local color_value_extmarks = {}
 local color_values = { 0, 0, 0, nil, 100 }
 local boxes_extmarks = {}
 local output_extmark = {}
-local output = "rgb(0, 0, 0)"
+local output = "hsl(0 0% 0%)"
 local action_group = {}
 local print_output_mode = nil
 local sandwich_mode = false
@@ -196,7 +196,7 @@ local function update_output() --{{{
 	local transp_hex = ""
 	if transparency_mode == true then
 		alpha_string = "a"
-		alpha_value_string = "/ " .. alpha_value
+		alpha_value_string = " / " .. alpha_value
 		transp_hex = string.format("%02x", round(color_values[5] * (255 / 100) + 0.001)) -- added 0.001 for rounding 0.5 to 1
 	end
 
@@ -234,7 +234,7 @@ local function update_output() --{{{
 		vim.cmd(":highlight ColorPickerOutput guifg=" .. fg_color .. " guibg=" .. hslToHex(arg1, arg2, arg3))
 	end
 
-	output_extmark = ext(3, 0, output:gsub("%s+", ""), "ColorPickerOutput", "right_align")
+	output_extmark = ext(3, 0, output:gsub("%s+", " "), "ColorPickerOutput", "right_align")
 end --}}}
 
 local function change_output_type() --{{{
@@ -375,7 +375,7 @@ local function setup_virt_text() ---create initial virtual text{{{
 	end
 
 	--- last row
-	output_extmark = ext(3, 0, "rgb(0 0 0)", M.user_settings.text_highlight_group, "right_align")
+	output_extmark = ext(3, 0, color_mode, M.user_settings.text_highlight_group, "right_align")
 end --}}}
 
 -------------------------------------
