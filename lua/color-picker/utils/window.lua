@@ -633,8 +633,8 @@ local function sandwich_processor(str) --{{{
 	local hex_capture_pattern = "#(%x%x%x%x%x%x)"
 	local hexa_capture_pattern = "#(%x%x%x%x%x%x)(%x%x)"
 	local short_hex_capture_pattern = "#(%x%x%x)"
-	local rgba_capture_pattern = "rgba%(%s*(%d+)%s*,?%s*(%d+)%s*,?%s*(%d+)%s*,?%s*(%d+%.?%d*)%s*%)"
-	local hsla_capture_pattern = "hsla%(%s*(%d+)%s*,?%s*(%d+)%s*%%*,?%s*(%d+)%s*%%,?%s*(%d+%.?%d*)%s*%)"
+	local rgba_capture_pattern = "rgba%(%s*(%d+)%s*,?%s*(%d+)%s*,?%s*(%d+)%s*,?%/?%s*(%d+%.?%d*)%s*%)"
+	local hsla_capture_pattern = "hsla%(%s*(%d+)%s*,?%s*(%d+)%s*%%*,?%s*(%d+)%s*%%,?/?%s*(%d+%.?%d*)%s*%)"
 	local rgb_capture_pattern = "rgb%(%s*(%d+)%s*,?%s*(%d+)%s*,?%s*(%d+)%s*,?%s*%)"
 	local hsl_capture_pattern = "hsl%(%s*(%d+)%s*,?%s*(%d+)%s*%%*,?%s*(%d+)%s*%%,?%s*%)"
 
